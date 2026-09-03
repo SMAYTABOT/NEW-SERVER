@@ -12,8 +12,7 @@
       <stop offset="1" stop-color="#050607" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect width="768" height="768" fill="#050607"/>
-  <rect width="768" height="768" fill="url(#halo)"/>
+  <ellipse cx="384" cy="384" rx="300" ry="300" fill="url(#halo)"/>
   <g fill="none" stroke="#b5ff27" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
     <path d="M161 340 370 201l53 34-209 140 195 135v170L161 521v-70l86-56 51 35-76 45 139 91v-36L161 395Z"/>
     <path d="m452 257 20 13-62 42v117l-53-35V316Z"/>
