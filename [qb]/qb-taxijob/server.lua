@@ -40,8 +40,8 @@ RegisterNetEvent('qb-taxi:server:NpcPay', function(_, hasReceivedBonus)
 
             local chance = math.random(1, 100)
             if chance < 26 then
-                exports['qb-inventory']:AddItem(src, Config.Rewards, 1, false, false, 'qb-taxi:server:NpcPay')
-                TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems[Config.Rewards], 'add')
+                exports['ps-inventory']:AddItem(src, Config.Rewards, 1, false, false, 'qb-taxi:server:NpcPay')
+                TriggerClientEvent('ps-inventory:client:ItemBox', src, sharedItems[Config.Rewards], 'add')
             end
         else
             DropPlayer(src, 'Attempting To Exploit')

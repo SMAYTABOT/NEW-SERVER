@@ -171,7 +171,7 @@ RegisterNetEvent('lockpicks:UseLockpick', function(isAdvanced)
                     else
                         if math.random(1, 100) <= Config.ChanceToBreakAdvancedLockPick then
                             TriggerServerEvent('qb-houserobbery:server:removeAdvancedLockpick')
-                            TriggerEvent('qb-inventory:client:ItemBox', sharedItems['advancedlockpick'], 'remove')
+                            TriggerEvent('ps-inventory:client:ItemBox', sharedItems['advancedlockpick'], 'remove')
                         end
                         QBCore.Functions.Notify(Lang:t('error.didnt_work'), 'error', 2500)
                     end
@@ -183,7 +183,7 @@ RegisterNetEvent('lockpicks:UseLockpick', function(isAdvanced)
                     else
                         if math.random(1, 100) <= Config.ChanceToBreakLockPick then
                             TriggerServerEvent('qb-houserobbery:server:removeLockpick')
-                            TriggerEvent('qb-inventory:client:ItemBox', sharedItems['lockpick'], 'remove')
+                            TriggerEvent('ps-inventory:client:ItemBox', sharedItems['lockpick'], 'remove')
                         end
                         QBCore.Functions.Notify(Lang:t('error.didnt_work'), 'error', 2500)
                     end
@@ -234,7 +234,7 @@ CreateThread(function()
                         else
                             if not requiredItemsShowed then
                                 requiredItemsShowed = true
-                                TriggerEvent('qb-inventory:client:requiredItems', requiredItems, true)
+                                TriggerEvent('ps-inventory:client:requiredItems', requiredItems, true)
                             end
                         end
                     end
@@ -245,7 +245,7 @@ CreateThread(function()
         if not inRange then
             if requiredItemsShowed then
                 requiredItemsShowed = false
-                TriggerEvent('qb-inventory:client:requiredItems', requiredItems, false)
+                TriggerEvent('ps-inventory:client:requiredItems', requiredItems, false)
             end
             Wait(1000)
         end

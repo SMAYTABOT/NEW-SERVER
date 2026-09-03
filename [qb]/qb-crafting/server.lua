@@ -29,8 +29,8 @@ RegisterServerEvent('qb-crafting:server:removeMaterials', function(itemName, amo
     local src = source
     local Player = exports['qb-core']:GetPlayer(src)
     if Player then
-        exports['qb-inventory']:RemoveItem(src, itemName, amount, false, 'qb-crafting:server:removeMaterials')
-        TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems[itemName], 'remove')
+        exports['ps-inventory']:RemoveItem(src, itemName, amount, false, 'qb-crafting:server:removeMaterials')
+        TriggerClientEvent('ps-inventory:client:ItemBox', src, sharedItems[itemName], 'remove')
     end
 end)
 
@@ -38,8 +38,8 @@ RegisterNetEvent('qb-crafting:server:removeCraftingTable', function(benchType)
     local src = source
     local Player = exports['qb-core']:GetPlayer(src)
     if not Player then return end
-    exports['qb-inventory']:RemoveItem(src, benchType, 1, false, 'qb-crafting:server:removeCraftingTable')
-    TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems[benchType], 'remove')
+    exports['ps-inventory']:RemoveItem(src, benchType, 1, false, 'qb-crafting:server:removeCraftingTable')
+    TriggerClientEvent('ps-inventory:client:ItemBox', src, sharedItems[benchType], 'remove')
     TriggerClientEvent('QBCore:Notify', src, Lang:t('notifications.tablePlace'), 'success')
 end)
 
@@ -47,8 +47,8 @@ RegisterNetEvent('qb-crafting:server:addCraftingTable', function(benchType)
     local src = source
     local Player = exports['qb-core']:GetPlayer(src)
     if not Player then return end
-    if not exports['qb-inventory']:AddItem(src, benchType, 1, false, false, 'qb-crafting:server:addCraftingTable') then return end
-    TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems[benchType], 'add')
+    if not exports['ps-inventory']:AddItem(src, benchType, 1, false, false, 'qb-crafting:server:addCraftingTable') then return end
+    TriggerClientEvent('ps-inventory:client:ItemBox', src, sharedItems[benchType], 'add')
 end)
 
 RegisterNetEvent('qb-crafting:server:receiveItem', function(benchType, craftedItem, amountToCraft)
@@ -77,15 +77,15 @@ RegisterNetEvent('qb-crafting:server:receiveItem', function(benchType, craftedIt
 
     for _, requiredItem in ipairs(recipe.requiredItems or {}) do
         local totalRequiredAmount = requiredItem.amount * amountToCraft
-        if not exports['qb-inventory']:RemoveItem(src, requiredItem.item, totalRequiredAmount, false, 'qb-crafting:server:receiveItem') then
+        if not exports['ps-inventory']:RemoveItem(src, requiredItem.item, totalRequiredAmount, false, 'qb-crafting:server:receiveItem') then
             return
         end
-        TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems[requiredItem.item], 'remove')
+        TriggerClientEvent('ps-inventory:client:ItemBox', src, sharedItems[requiredItem.item], 'remove')
     end
 
-    if not exports['qb-inventory']:AddItem(src, craftedItem, amountToCraft, false, false, 'qb-crafting:server:receiveItem') then return end
+    if not exports['ps-inventory']:AddItem(src, craftedItem, amountToCraft, false, false, 'qb-crafting:server:receiveItem') then return end
 
-    TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems[craftedItem], 'add')
+    TriggerClientEvent('ps-inventory:client:ItemBox', src, sharedItems[craftedItem], 'add')
     TriggerClientEvent('QBCore:Notify', src, string.format(Lang:t('notifications.craftMessage'), sharedItems[craftedItem].label), 'success')
     IncreasePlayerXP(src, (recipe.xpGain or 0) * amountToCraft, xpType)
 end)

@@ -44,7 +44,7 @@ RegisterNetEvent('qb-vehiclekeys:server:AcquireVehicleKeys', function(plate)
 
     -- Check if player has a lockpick or advanced lockpick
     local itemName = nil
-    for _, item in pairs(exports['qb-inventory']:GetInventoryItems(src) or {}) do
+    for _, item in pairs(exports['ps-inventory']:GetInventoryItems(src) or {}) do
         if (item.name == 'lockpick' or item.name == 'advancedlockpick') and item.amount and item.amount > 0 then
             itemName = item.name
             break
@@ -57,8 +57,8 @@ RegisterNetEvent('qb-vehiclekeys:server:AcquireVehicleKeys', function(plate)
     end
 
     -- Remove the lockpick and give the keys
-    if exports['qb-inventory']:RemoveItem(src, itemName, 1, false, 'qb-vehiclekeys:server:AcquireVehicleKeys') then
-        TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems[itemName], 'remove')
+    if exports['ps-inventory']:RemoveItem(src, itemName, 1, false, 'qb-vehiclekeys:server:AcquireVehicleKeys') then
+        TriggerClientEvent('ps-inventory:client:ItemBox', src, sharedItems[itemName], 'remove')
         GiveKeys(src, plate)
     else
         TriggerClientEvent('QBCore:Notify', src, Lang:t('notify.ydhk'), 'error')
@@ -77,8 +77,8 @@ RegisterNetEvent('qb-vehiclekeys:server:breakLockpick', function(itemName)
     local Player = exports['qb-core']:GetPlayer(source)
     if not Player then return end
     if not (itemName == 'lockpick' or itemName == 'advancedlockpick') then return end
-    if exports['qb-inventory']:RemoveItem(source, itemName, 1, false, 'qb-vehiclekeys:server:breakLockpick') then
-        TriggerClientEvent('qb-inventory:client:ItemBox', source, sharedItems[itemName], 'remove')
+    if exports['ps-inventory']:RemoveItem(source, itemName, 1, false, 'qb-vehiclekeys:server:breakLockpick') then
+        TriggerClientEvent('ps-inventory:client:ItemBox', source, sharedItems[itemName], 'remove')
     end
 end)
 

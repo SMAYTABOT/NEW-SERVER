@@ -193,8 +193,8 @@ RegisterServerEvent('qb-crypto:server:ExchangeFail', function()
     local Player = exports['qb-core']:GetPlayer(src)
     local ItemData = Player.GetItemByName('cryptostick')
     if ItemData ~= nil then
-        exports['qb-inventory']:RemoveItem(src, 'cryptostick', 1, false, 'qb-crypto:server:ExchangeFail')
-        TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems['cryptostick'], 'remove')
+        exports['ps-inventory']:RemoveItem(src, 'cryptostick', 1, false, 'qb-crypto:server:ExchangeFail')
+        TriggerClientEvent('ps-inventory:client:ItemBox', src, sharedItems['cryptostick'], 'remove')
         TriggerClientEvent('QBCore:Notify', src, Lang:t('error.cryptostick_malfunctioned'), 'error')
     end
 end)
@@ -224,10 +224,10 @@ RegisterServerEvent('qb-crypto:server:ExchangeSuccess', function(LuckChance)
         if LuckChance == LuckyNumber then
             Amount = (math.random(1599999, 2599999) / DeelNumber)
         end
-        exports['qb-inventory']:RemoveItem(src, 'cryptostick', 1, false, 'qb-crypto:server:ExchangeSuccess')
+        exports['ps-inventory']:RemoveItem(src, 'cryptostick', 1, false, 'qb-crypto:server:ExchangeSuccess')
         Player.AddMoney('crypto', Amount, 'qb-crypto:server:ExchangeSuccess')
         TriggerClientEvent('QBCore:Notify', src, Lang:t('success.you_have_exchanged_your_cryptostick_for', { amount = Amount }), 'success', 3500)
-        TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems['cryptostick'], 'remove')
+        TriggerClientEvent('ps-inventory:client:ItemBox', src, sharedItems['cryptostick'], 'remove')
         TriggerClientEvent('qb-phone:client:AddTransaction', src, Player, {}, Lang:t('credit.there_are_amount_credited', { amount = Amount }), 'Credit')
     end
 end)

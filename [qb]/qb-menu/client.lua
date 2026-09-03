@@ -21,7 +21,7 @@ local function openMenu(data, sort, skipFirst)
         if v['icon'] then
             if sharedItems[tostring(v['icon'])] then
                 if not string.find(sharedItems[tostring(v['icon'])].image, '//') and not string.find(v['icon'], '//') then
-                    v['icon'] = 'nui://qb-inventory/html/images/' .. sharedItems[tostring(v['icon'])].image
+                    v['icon'] = 'nui://ps-inventory/html/images/' .. sharedItems[tostring(v['icon'])].image
                 end
             end
         end

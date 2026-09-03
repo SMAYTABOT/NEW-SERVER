@@ -90,15 +90,15 @@ RegisterServerEvent('AttackTransport:graczZrobilnapad', function(lootTime)
 	local info = {
 		worth = math.random(Config.Payout.Min, Config.Payout.Max)
 	}
-	exports['qb-inventory']:AddItem(_source, 'markedbills', bags, false, info, 'AttackTransport:graczZrobilnapad')
-	TriggerClientEvent('qb-inventory:client:ItemBox', _source, sharedItems['markedbills'], 'add')
+	exports['ps-inventory']:AddItem(_source, 'markedbills', bags, false, info, 'AttackTransport:graczZrobilnapad')
+	TriggerClientEvent('ps-inventory:client:ItemBox', _source, sharedItems['markedbills'], 'add')
 
 	local chance = math.random(1, 100)
 	TriggerClientEvent('QBCore:Notify', _source, 'You took ' .. bags .. ' bags of cash from the van')
 
 	if chance >= 95 then
-		exports['qb-inventory']:AddItem(_source, 'security_card_01', 1, false, false, 'AttackTransport:graczZrobilnapad')
-		TriggerClientEvent('qb-inventory:client:ItemBox', _source, sharedItems['security_card_01'], 'add')
+		exports['ps-inventory']:AddItem(_source, 'security_card_01', 1, false, false, 'AttackTransport:graczZrobilnapad')
+		TriggerClientEvent('ps-inventory:client:ItemBox', _source, sharedItems['security_card_01'], 'add')
 	end
 
 	-- Mission is now complete; reset state so a new mission can start

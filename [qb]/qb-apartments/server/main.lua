@@ -73,7 +73,7 @@ RegisterNetEvent('apartments:server:openStash', function(CurrentApartment)
         return
     end
 
-    exports['qb-inventory']:OpenInventory(src, CurrentApartment)
+    exports['ps-inventory']:OpenInventory(src, CurrentApartment)
 end)
 
 RegisterNetEvent('apartments:server:CreateApartment', function(type, label, firstSpawn)

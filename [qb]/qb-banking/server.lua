@@ -186,7 +186,7 @@ QBCore.Functions.CreateCallback('qb-banking:server:openATM', function(source, cb
     local src = source
     local Player, citizenid = getPlayerAndCitizenId(src)
     if not Player or not citizenid then return end
-    local bankCards = exports['qb-inventory']:GetItemsByName(src, 'bank_card') -- inventory method, not on Player API
+    local bankCards = exports['ps-inventory']:GetItemsByName(src, 'bank_card') -- inventory method, not on Player API
     if not bankCards then return TriggerClientEvent('QBCore:Notify', src, Lang:t('error.card'), 'error') end
     local acceptablePins = {}
     for _, bankCard in ipairs(bankCards) do acceptablePins[#acceptablePins + 1] = bankCard.info.cardPin end
@@ -348,7 +348,7 @@ QBCore.Functions.CreateCallback('qb-banking:server:orderCard', function(source, 
         cardNumber = cardNumber,
         cardPin = pinNumber,
     }
-    exports['qb-inventory']:AddItem(src, 'bank_card', 1, false, info, 'qb-banking:server:orderCard')
+    exports['ps-inventory']:AddItem(src, 'bank_card', 1, false, info, 'qb-banking:server:orderCard')
     cb({ success = true, message = Lang:t('success.card') })
 end)
 
@@ -453,7 +453,7 @@ end)
 QBCore.Functions.CreateUseableItem('bank_card', function(source, item)
     local Player = exports['qb-core']:GetPlayer(source)
     if not Player then return end
-    if exports['qb-inventory']:GetItemByName(source, item.name) then -- inventory method, not on Player API
+    if exports['ps-inventory']:GetItemByName(source, item.name) then -- inventory method, not on Player API
         TriggerClientEvent('qb-banking:client:useCard', source)
     end
 end)

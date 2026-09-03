@@ -87,8 +87,8 @@ RegisterNetEvent('qb-jewellery:server:vitrineReward', function(vitrineIndex)
                 TriggerClientEvent('qb-jewellery:client:setVitrineState', -1, 'isBusy', false, vitrineIndex)
                 local item = getRewardBasedOnProbability(Config.VitrineRewards)
                 local amount = math.random(Config.VitrineRewards[item]['amount']['min'], Config.VitrineRewards[item]['amount']['max'])
-                if exports['qb-inventory']:AddItem(src, Config.VitrineRewards[item]['item'], amount, false, false, 'qb-jewellery:server:vitrineReward') then
-                    TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems[Config.VitrineRewards[item]['item']], 'add')
+                if exports['ps-inventory']:AddItem(src, Config.VitrineRewards[item]['item'], amount, false, false, 'qb-jewellery:server:vitrineReward') then
+                    TriggerClientEvent('ps-inventory:client:ItemBox', src, sharedItems[Config.VitrineRewards[item]['item']], 'add')
                 else
                     TriggerClientEvent('QBCore:Notify', src, Lang:t('error.to_much'), 'error')
                 end

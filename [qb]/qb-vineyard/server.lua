@@ -65,8 +65,8 @@ RegisterNetEvent('qb-vineyard:server:getGrapes', function()
     grapePickupState[src] = now
 
     local amount = math.random(Config.GrapeAmount.min, Config.GrapeAmount.max)
-    exports['qb-inventory']:AddItem(src, 'grape', amount, false, false, 'qb-vineyard:server:getGrapes')
-    TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems['grape'], 'add')
+    exports['ps-inventory']:AddItem(src, 'grape', amount, false, false, 'qb-vineyard:server:getGrapes')
+    TriggerClientEvent('ps-inventory:client:ItemBox', src, sharedItems['grape'], 'add')
 end)
 
 QBCore.Functions.CreateCallback('qb-vineyard:server:loadIngredients', function(source, cb)
@@ -76,8 +76,8 @@ QBCore.Functions.CreateCallback('qb-vineyard:server:loadIngredients', function(s
     if Player.PlayerData.items ~= nil then
         if grape ~= nil then
             if grape.amount >= 23 then
-                exports['qb-inventory']:RemoveItem(src, 'grapejuice', 23, false, 'qb-vineyard:server:loadIngredients')
-                TriggerClientEvent('qb-inventory:client:ItemBox', source, sharedItems['grapejuice'], 'remove')
+                exports['ps-inventory']:RemoveItem(src, 'grapejuice', 23, false, 'qb-vineyard:server:loadIngredients')
+                TriggerClientEvent('ps-inventory:client:ItemBox', source, sharedItems['grapejuice'], 'remove')
                 wineRewardState[src] = true
                 cb(true)
             else
@@ -101,8 +101,8 @@ QBCore.Functions.CreateCallback('qb-vineyard:server:grapeJuice', function(source
     if Player.PlayerData.items ~= nil then
         if grape ~= nil then
             if grape.amount >= 16 then
-                exports['qb-inventory']:RemoveItem(src, 'grape', 16, false, 'qb-vineyard:server:grapeJuice')
-                TriggerClientEvent('qb-inventory:client:ItemBox', source, sharedItems['grape'], 'remove')
+                exports['ps-inventory']:RemoveItem(src, 'grape', 16, false, 'qb-vineyard:server:grapeJuice')
+                TriggerClientEvent('ps-inventory:client:ItemBox', source, sharedItems['grape'], 'remove')
                 grapeJuiceRewardState[src] = true
                 cb(true)
             else
@@ -131,8 +131,8 @@ RegisterNetEvent('qb-vineyard:server:receiveWine', function()
     wineRewardState[src] = nil
 
     local amount = math.random(Config.WineAmount.min, Config.WineAmount.max)
-    exports['qb-inventory']:AddItem(src, 'wine', amount, false, false, 'qb-vineyard:server:receiveWine')
-    TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems['wine'], 'add')
+    exports['ps-inventory']:AddItem(src, 'wine', amount, false, false, 'qb-vineyard:server:receiveWine')
+    TriggerClientEvent('ps-inventory:client:ItemBox', src, sharedItems['wine'], 'add')
 end)
 
 RegisterNetEvent('qb-vineyard:server:receiveGrapeJuice', function()
@@ -147,8 +147,8 @@ RegisterNetEvent('qb-vineyard:server:receiveGrapeJuice', function()
     grapeJuiceRewardState[src] = nil
 
     local amount = math.random(Config.GrapeJuiceAmount.min, Config.GrapeJuiceAmount.max)
-    exports['qb-inventory']:AddItem(src, 'grapejuice', amount, false, false, 'qb-vineyard:server:receiveGrapeJuice')
-    TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems['grapejuice'], 'add')
+    exports['ps-inventory']:AddItem(src, 'grapejuice', amount, false, false, 'qb-vineyard:server:receiveGrapeJuice')
+    TriggerClientEvent('ps-inventory:client:ItemBox', src, sharedItems['grapejuice'], 'add')
 end)
 
 AddEventHandler('playerDropped', function()
@@ -169,8 +169,8 @@ RegisterNetEvent('qb-vineyard:server:sellItems', function()
     for itemName, price in pairs(Config.Sell.prices or {}) do
         local item = Player.GetItemByName(itemName)
         if item and item.amount and item.amount > 0 then
-            exports['qb-inventory']:RemoveItem(src, itemName, item.amount, false, 'qb-vineyard:server:sellItems')
-            TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems[itemName], 'remove')
+            exports['ps-inventory']:RemoveItem(src, itemName, item.amount, false, 'qb-vineyard:server:sellItems')
+            TriggerClientEvent('ps-inventory:client:ItemBox', src, sharedItems[itemName], 'remove')
             total = total + (item.amount * price)
             soldAny = true
         end
