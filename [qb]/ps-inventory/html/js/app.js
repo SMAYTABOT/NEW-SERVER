@@ -88,12 +88,11 @@ $(document).on("mouseenter", ".item-slot", function(e) {
     e.preventDefault();
     $(".ply-iteminfo-container").css("opacity", "0.0");
     if ($(this).data("item") != null) {
-        $(".ply-iteminfo-container").css("opacity", "1.0");
-        $(".ply-iteminfo-container").fadeIn(150);
+    $(".ply-iteminfo-container").css({ opacity: "1.0", display: "block" });
         // FormatItemInfo($(this).data("item"));
         FormatItemInfo($(this).data("item"), $(this));
     } else {
-        $(".ply-iteminfo-container").fadeOut(100);
+        $(".ply-iteminfo-container").css({ opacity: "0.0", display: "none" });
     }
 });
 
@@ -2488,7 +2487,7 @@ var requiredItemOpen = false;
             requiredItemOpen = false;
         }
 
-        $("#qbcore-inventory").fadeIn(300);
+        $("#qbcore-inventory").stop(true, true).css({ display: "block", opacity: "1" });
         if (data.other != null && data.other != "") {
             $(".other-inventory").attr("data-inventory", data.other.name);
         } else {
@@ -2771,7 +2770,7 @@ var requiredItemOpen = false;
         $(".ply-hotbar-inventory").css("display", "block");
         // $(".ply-iteminfo-container").css("display", "none");
         $(".ply-iteminfo-container").css("opacity", "0.0");
-        $("#qbcore-inventory").fadeOut(300);
+        $("#qbcore-inventory").stop(true, true).css({ display: "none", opacity: "0" });
         $(".combine-option-container").hide();
         $(".item-slot").remove();
         if ($("#rob-money").length) {
