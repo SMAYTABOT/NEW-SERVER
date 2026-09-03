@@ -25,9 +25,11 @@ p { margin: 0 !important; }
 }
 
 :root {
-    --color-primary: #23242e;
-    --color-secondary: #383942;
-    --color-accent: rgb(65, 199, 165);
+    --color-primary: rgba(8, 14, 18, 0.94);
+    --color-secondary: rgba(17, 29, 34, 0.96);
+    --color-accent: #b5ff27;
+    --color-neon-cyan: #27f5d0;
+    --color-neon-soft: rgba(181, 255, 39, 0.18);
 }
 
 .fas.fa-lock {
@@ -44,6 +46,13 @@ p { margin: 0 !important; }
     padding-top: 3px;
     padding-bottom: 10px;
     width: 45%;
+    filter: drop-shadow(0 0 6px rgba(181, 255, 39, 0.8));
+    animation: logoPulse 3.2s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+    0%, 100% { filter: drop-shadow(0 0 5px rgba(181, 255, 39, 0.65)); }
+    50% { filter: drop-shadow(0 0 15px rgba(181, 255, 39, 1)); }
 }
 
 ::placeholder {
@@ -140,6 +149,24 @@ body {
     top: 0;
     left: 0;
     z-index: -1;
+    background:
+        radial-gradient(circle at 50% 43%, rgba(181, 255, 39, 0.09), transparent 30%),
+        linear-gradient(rgba(39, 245, 208, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(39, 245, 208, 0.035) 1px, transparent 1px);
+    background-size: 100% 100%, 42px 42px, 42px 42px;
+    animation: gridDrift 18s linear infinite;
+}
+
+@keyframes gridDrift {
+    from { background-position: 0 0, 0 0, 0 0; }
+    to { background-position: 0 0, 42px 42px, 42px 42px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .inv-background,
+    .brand-logo {
+        animation: none;
+    }
 }
 
 .inv-container {
@@ -158,6 +185,8 @@ body {
     height: 64.17%;
     max-height: 64.17%;
     background: var(--color-primary);
+    border: 1px solid rgba(181, 255, 39, 0.48);
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.45), inset 0 0 28px rgba(39, 245, 208, 0.04);
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
 }
@@ -198,6 +227,8 @@ body {
     height: 64.17%;
     max-height: 64.17%;
     background: var(--color-primary);
+    border: 1px solid rgba(39, 245, 208, 0.48);
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.45), inset 0 0 28px rgba(181, 255, 39, 0.04);
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
 }
@@ -270,7 +301,8 @@ body {
     align-items: center;
     cursor: pointer;
     border-radius: 5px;
-    box-shadow: none;
+    border: 1px solid rgba(181, 255, 39, 0.55);
+    box-shadow: 0 0 12px rgba(181, 255, 39, 0.18);
     text-shadow: none;
     margin-left: 18%;
     margin-top: 40%;
@@ -307,17 +339,19 @@ body {
     width: 98px;
     height: 98px;
     float: left;
-    border: 2px solid #41414b;
-    background-color: #33343d !important;
+    border: 1px solid rgba(39, 245, 208, 0.28);
+    background-color: rgba(21, 35, 40, 0.92) !important;
     margin: 3px;
-    transition: opacity 0.2s ease 0s;
+    transition: opacity 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     border-radius: 9px;
     opacity: 90%;
 }
 
 .item-slot:hover {
-    background-color: #292932 !important;
-    opacity: 90%;
+    background-color: rgba(29, 52, 54, 0.98) !important;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 13px var(--color-neon-soft), inset 0 0 10px rgba(181, 255, 39, 0.08);
+    transform: translateY(-2px);
 }
 
 .inv-option-item {
@@ -410,6 +444,8 @@ body {
     transition: background-color .1s linear;
     border-radius: 5px!important;
     opacity: 70%;
+    border: 1px solid rgba(181, 255, 39, 0.28);
+    box-shadow: inset 0 0 12px rgba(39, 245, 208, 0.05);
 }
 .inv-option-hand {
     margin-top: 20%;
@@ -420,7 +456,9 @@ body {
 }
 
 .inv-option-item:hover {
-    background-color: #5c5c6c;
+    background-color: rgba(35, 62, 62, 0.98) !important;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 12px var(--color-neon-soft);
 }
 
 .btn-combine {
