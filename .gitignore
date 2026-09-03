@@ -1,0 +1,6 @@
+tmp/
+cache/
+logs/
+*.log
+.DS_Store
+
